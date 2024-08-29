@@ -1,4 +1,4 @@
-      YOUTUBE CLONE (Fully Functional && RESPONSIVE)👌
+    YOUTUBE CLONE (Fully Functional && RESPONSIVE)👌
 
 Used Technologies :- 
 𝗥𝗲𝗮𝗰𝘁 𝗝𝘀 :- JavaScript Library(Frontend)
