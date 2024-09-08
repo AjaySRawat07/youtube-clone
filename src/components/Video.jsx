@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import Time from "./loader/Time";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-
+import {abbreviateNumber} from "js-abbreviation-number"
+import Time from "./loader/Time";
 
 const Video = ({video}) =>{
-    console.log(video);
-
+    // console.log(video);
     return(
-    <div className="">
-            <Link to={`/video/${video?.videoId}`}/>
+    <div className="top-5">
+            <Link to={`/video/${video?.videoId}`}>
             <div>
                 <div className="relative h-48 md:h-56 md: rounded-xl hover:rounded-none duration-200 overflow-hidden">
                     {/* thumbnail for video */}
@@ -18,10 +17,9 @@ const Video = ({video}) =>{
                     alt="" />
                     {video?.lengthSeconds && <Time time={video?.lengthSeconds}/>}
                 </div>
-            </div>
+            {/* channel logo */}
         <div className="flex mt-3 space-x-2">
           <div className="flex items-start">
-            {/* channel logo */}
              <div className="flex h-9 w-9 rounded-full overflow-hidden border">
                 <img 
                 className="h-full w-full rounded-full overflow-hidden"
@@ -36,8 +34,20 @@ const Video = ({video}) =>{
                         <BsFillCheckCircleFill className="text-gray-600 ml-1 text[12px]"/>
                     )}
                 </span>
-             </div>
+                {/* views on video */}
+                <div className="flex text-gray-500 text-xs font-semibold">
+                    <span>{`${abbreviateNumber(
+                        video?.stats?.views,2
+                    )}views`}</span>
+                    <span className="flex text-[24px] leading-none font-bold  relative top-[-10px] mx-1">
+                .
+              </span>
+              <span className="truncate">{video?.publishedTimeText}</span>
+                 </div>
+              </div>
+            </div>
           </div>
+        </Link>
     </div>
     )
 }

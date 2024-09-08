@@ -1,5 +1,6 @@
+import moment from "moment";
 
-
+// 1st install ===>>> npm moment(for formatting date)
 const Time = ({time}) =>{
     const videoTime = moment()?.startOf("day")?.seconds(time)?.format("H:mm:ss");
     return (
