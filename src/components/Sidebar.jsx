@@ -182,7 +182,7 @@ function Sidebar() {
 
   return (
     <>
-    <div className={`${ isMobileShow ? "fixed top-0 bottom-0 left-0 translate-all duration-300 bg-white z-40 h-screen w-[70%] sm:w-[30%]" : "hidden h-[calc(100vh-6.625rem)] w-[24%]"} xl:static xl:block px-2 lg:px-6 overflow-y-scroll overflow-x-hidden scrollbar-thin`}>
+    <div className={`${ isMobileShow ? "fixed top-0 bottom-0 left-0 translate-all duration-300 bg-white z-40 h-screen w-[70%] sm:w-[30%] scrollbar-thin" : "hidden h-[calc(100vh-6.625rem)] w-[22%]"} xl:static xl:block px-2 lg:px-6 overflow-y-scroll overflow-x-hidden scrollbar-thin`}>
       {/* Home */}
       <div className=" space-y-2 items-center">
         {sidebarItems.map((group) => {
