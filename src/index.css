@@ -11,3 +11,8 @@
     -ms-overflow-style: none;  /* Hide scrollbar for Internet Explorer and Edge */
     scrollbar-width: none;  /* Hide scrollbar for Firefox */
 }
+
+.fullBody {
+    background-color: black;
+    color: aliceblue;
+}

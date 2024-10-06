@@ -7,12 +7,13 @@ import SuggestedVideo from "./SuggestedVideo";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { fetchData } from "../utils/rapidapi";
 import TopListItem from "./TopListItem";
+import { useUtils } from "../context/UtilsProvider";
 
 const VideoPlaying = ()  => {
   const [video, setVideo] = useState();
   const [realatedVideo, setRelativeVideo] = useState();
   const { id } = useParams();
-
+  const {theme} = useUtils()
   useEffect(() => {
     fetchVideoDetails();
     fetchRelatedVideo();
@@ -77,7 +78,7 @@ const VideoPlaying = ()  => {
               </div>
             </div>
             {/* comments & likes */}
-            <div className="flex mt-4 md:mt-0">
+            <div className={`flex mt-4 md:mt-0 ${theme ? "bg-white text-black":"bg-black text-white"}`}>
               <div className="flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15]">
                 <AiOutlineLike className="text-xl mr-2" />
                 {`${abbreviateNumber(video?.stats?.likes, 2)} Likes`}
@@ -87,16 +88,16 @@ const VideoPlaying = ()  => {
               </div>
             </div>
           </div>
-          <div className="p-4 bg-gray-100 rounded-xl mt-4 text-sm">
+          <div className="p-4 bg-gray-100 rounded-xl mt-4 text-sm bg-white/[0.15]">
             {video?.description}
           </div>
-          <div className="flex gap-x-4 font-semibold rounded-xl mt-4 text-xl">
+          <div className={`flex gap-x-4 font-semibold rounded-xl mt-4 text-xl bg-white/[0.15]`}>
             {video?.stats?.comments} <p>Comments</p>
           </div>
         </div>
         <div className="flex flex-col px-4 py-6 h-[calc(100vh-4.625rem)] lg:w-[350px] xl:w-[400px] overflow-y-scroll overflow-x-hidden">
               {/* TopListItem at the top, fixed */}
-          <div className="top-0 bg-gray-50">
+          <div className="top-0">
              <TopListItem />
           </div>
              {/* Suggested videos */}

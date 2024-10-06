@@ -6,6 +6,10 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosSearch, IoMdMic } from "react-icons/io";
 import { RiVideoAddLine } from "react-icons/ri";
 import { AiOutlineBell } from "react-icons/ai";
+import { CiLight } from "react-icons/ci";
+import { MdNightlight } from "react-icons/md";
+
+
 
 import logo from "../../public/logo.png";
 import user from "../../public/user.jpg";
@@ -18,6 +22,7 @@ function Navbar() {
     const {setIsSlide,isSlide,isMobileShow,setIsMobileShow} = useUtils();
     const [searchbar, setSearchbar] = useState(false);
     const navigate = useNavigate();
+    const {theme, setTheme} = useUtils();
 
     function searchQueryHandler(event){
       if((event?.key === "Enter" || event === "searchButton") && searchQuery?.length > 0){
@@ -59,23 +64,25 @@ function Navbar() {
         </div>
       )
     }
-
+  console.log(theme);
   return (
-    <div className="flex justify-between w-[100%] bg-white px-6 py-2 ">
+    <div className={`flex justify-between w-[100%] px-6 py-2}`}>
       <div className="flex items-center space-x-4 ">
         <AiOutlineMenu className="text-xl cursor-pointer" onClick={handleSidebar}/>
-        <img src={logo} alt="" className="w-28 cursor-pointer" onClick={() => navigate(`/`)}/>
+        <img src={logo} alt="" className="w-28 cursor-pointer bg-white rounded-md" onClick={() => navigate(`/`)}/>
       </div>
-      <div className="hidden md:flex w-[35%] items-center ">
-        <div className="w-[100%] px-4 py-2 border-[1px] border-gray-400 rounded-l-full">
-          <input type="text" placeholder="Search" className="outline-none"
+      <div className="hidden md:flex w-[35%] items-center mt-1">
+        <div className={`w-[100%] px-4 py-2 border-[1px] border-gray-400 rounded-l-full `}>
+          <input type="text" 
+          placeholder="Search" 
+          className={`outline-none ${theme ?'bg-white text-black' : 'bg-black text-white'}`}
           onChange={(e)=> setSearchQuery(e.target.value)}
           onKeyUp={searchQueryHandler}
           value={searchQuery}
           />
         </div>
         <button
-          className="px-4 py-2 border-[1px] border-gray-400 bg-gray-100 rounded-r-full"
+          className={`px-4 py-2 border-[1px] border-gray-400 rounded-r-full`}
           onClick={() => searchQueryHandler("searchButton")}
         >
           <CiSearch size={"24px"} />
@@ -90,6 +97,11 @@ function Navbar() {
         className="flex md:hidden"
         onClick={() => setSearchbar(!searchbar)}
         />
+      {
+        <button className={`text-2xl`}
+        onClick={() => setTheme(!theme)}
+        >{theme ? <CiLight /> : <MdNightlight />}</button>
+      }
         <RiVideoAddLine className="text-2xl" />
         <AiOutlineBell className="text-2xl" />
         <Avatar src={user} size="38" round={true} />
